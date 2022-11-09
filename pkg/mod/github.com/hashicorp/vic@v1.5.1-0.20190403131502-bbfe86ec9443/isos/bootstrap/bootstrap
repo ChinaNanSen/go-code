@@ -1,0 +1,154 @@
+#!/bin/bash
+
+set -x
+
+echo 1 > /proc/sys/net/ipv4/conf/all/arp_notify
+echo 1 > /proc/sys/net/ipv4/conf/default/arp_notify
+
+# depending on kernel, some may already be loaded or built in
+# this appends to any defined in a "drivers" arayy via repo customizations
+echo "Loading drivers"
+drivers+=( \
+    "vmw_pvscsi" \
+    "vmxnet3" \
+	"nfnetlink" \
+	"iptable_filter" \
+	"xt_conntrack" \
+    "nf_nat_ipv4" \
+    "iptable_nat" \
+	"nf_conntrack" \
+	"nf_conntrack_ipv4" \
+	"nf_defrag_ipv4" \
+	"ipt_REJECT"\
+	"xt_state" \
+)
+
+
+for i in ${drivers[@]}; do
+    modprobe $i
+done
+
+# create devices with proper permissions
+udevadm control --reload-rules
+udevadm trigger --type=subsystems --action=add
+udevadm trigger --type=devices --action=add
+
+MOUNTPOINT="/mnt/containerfs"
+mkdir -p $MOUNTPOINT
+
+echo "Waiting for rootfs"
+while [ ! -e /dev/disk/by-label/containerfs ]; do sleep 0.1;done
+# https://github.com/vmware/vic/issues/6379
+# grab dmesg output and dump to debug log if mount doesn't occur in a useful timeframe (2min)
+if timeout -s KILL 2m mount -t ext4 /dev/disk/by-label/containerfs ${MOUNTPOINT}; then
+    # ensure mountpoint exists
+    # setup udev directories for switch_root
+    mkdir -p ${MOUNTPOINT}/{.tether,dev,proc,sys}
+
+    # the size of the temp FS filesystem has been estimated during iso build and stored
+    # in the file /.tempfs_size, if the file is not present assume 80m, the list of
+    # directories/files in isos/bootstrap.sh (tempfs_target_list) should match the list of
+    # directories/files copied into tempfs by this script. The list of directories/files used
+    # to compute the size of tempfs is also stored and copied here into the file /.tempfs_list
+    if [ -f /.tempfs_size ]; then
+        tsize=$(cat /.tempfs_size)
+    else
+        tsize=80
+    fi
+
+    # ensure that no matter what we have access to required devices
+    # WARNING WARNING WARNING WARNING WARNING
+    # if the tmpfs is not large enough odd hangs can occur and the ESX event log will
+    # report the guest disabling the CPU
+    mount -t tmpfs -o size=${tsize}m tmpfs ${MOUNTPOINT}/.tether/
+
+    # enable full system functionality in the container
+    ln -s lib64 ${MOUNTPOINT}/.tether/lib
+    mkdir -p ${MOUNTPOINT}/.tether/{lib64,usr/lib/iptables,run}
+
+    echo "Publishing modules within container"
+    mkdir -p ${MOUNTPOINT}/lib/modules
+    mkdir -p ${MOUNTPOINT}/.tether/lib/modules
+    mount --bind ${MOUNTPOINT}/.tether/lib/modules ${MOUNTPOINT}/lib/modules
+    cp -pr /lib/modules/* ${MOUNTPOINT}/lib/modules/
+
+    # switch to the new root
+    echo "prepping for switch to container filesystem"
+
+    cp /bin/tether ${MOUNTPOINT}/.tether/tether
+    cp /bin/unpack ${MOUNTPOINT}/.tether/unpack
+    ln -s tether ${MOUNTPOINT}/.tether/tether-debug
+
+    echo 'tether tmpfs size before copying libraries: '
+    df -k ${MOUNTPOINT}/.tether
+
+    install-iptables ${MOUNTPOINT}/.tether
+    install-entropy ${MOUNTPOINT}/.tether
+
+    echo 'tether tmpfs size after copying libraries: '
+    df -k ${MOUNTPOINT}/.tether
+
+    # Create VIC chain
+    iptables -N VIC
+    # Set the default policy on all chains to drop traffic
+    iptables -P INPUT DROP
+    iptables -P OUTPUT DROP
+    iptables -P FORWARD DROP
+    # Direct any incoming/outgoing traffic immediately to VIC chain
+    iptables -A INPUT -j VIC
+    iptables -A OUTPUT -j VIC
+    # Always allow traffic on loopback interface
+    iptables -A INPUT -i lo -j ACCEPT
+    iptables -A OUTPUT -o lo -j ACCEPT
+    iptables -A FORWARD -i lo -o lo -j ACCEPT
+
+    # TEMP: https://github.com/vmware/vic/issues/6279
+    echo 262144 > /proc/sys/vm/max_map_count
+
+    # mount the cgroup hierarchy to allow DinV
+    if [ -d /sys/fs/cgroup ];then
+        mount -t cgroup -o all cgroup /sys/fs/cgroup
+    fi
+
+    until [[ $(ls -1 /dev/disk/by-label | wc -l) -eq $(ls -1 /sys/block/ | grep -v 'loop*' | grep -v 'ram*' | wc -l) ]]; do sleep 0.1;done
+
+    # stop udevd if we've recorded the pid to be removed - udev rules are likely not available in the container.
+    # if we need hotadd support in the container then we need to copy the rules over to /.tether
+    if [[ "${UDEV_PID}" != "" ]]; then
+        kill ${UDEV_PID}
+    fi
+
+    echo "switching to the new mount"
+    if systemctl; then
+        systemctl switch-root ${MOUNTPOINT} /.tether/tether >/dev/console 2>/dev/console
+    elif [[ "$(readlink /usr/sbin/switch_root)" == *"toybox"* ]]; then # see https://github.com/landley/toybox/issues/91
+        mount --move /sys ${MOUNTPOINT}/sys
+        mount --move /proc ${MOUNTPOINT}/proc
+        mount --move /dev ${MOUNTPOINT}/dev
+        exec switch_root ${MOUNTPOINT} /.tether/tether >/dev/console 2>/dev/console
+    else
+        exec switch_root ${MOUNTPOINT} /.tether/tether >/dev/console 2>/dev/console
+        # if successful then nothing after this point executes
+    fi
+
+    # if we fail to switch root then restore output to the debug file and note the problem
+    err=$?
+    exec >/dev/ttyS1 2>&1
+    echo "Failed to switch to the new mount: $err"
+else
+    # TODO: what do we do here? we really need to somehow report an error
+    # fail hard
+    echo "Unable to chroot into container filesystem"
+
+    # dump dmesg data in case there's a system problem injecting or loading the root filesystem
+    dmesg
+    # because dmesg is long and will wrap over console
+    echo "dmesg dump due to root filesystem mount failure"
+fi
+
+# Shut the system down
+if which systemctl; then
+    systemctl poweroff
+else
+    halt
+fi

@@ -1,0 +1,9 @@
+db2a560a5067e3208f3b9610ed6449a16cd3bf54	not-for-merge	branch 'alloc-pool' of https://github.com/go-sql-driver/mysql
+d78459c4f26611762f39411fcc137c4c0c3f7fcb	not-for-merge	branch 'auth_tests' of https://github.com/go-sql-driver/mysql
+eeb0d988963ebd1fe66724f7391bfba85ddeb7b5	not-for-merge	branch 'columns-counter' of https://github.com/go-sql-driver/mysql
+64ebbc24e35d1acbbd0840c2536660f20df04507	not-for-merge	branch 'internal' of https://github.com/go-sql-driver/mysql
+b66d043e6c8986ca01241b990326db395f9c0afd	not-for-merge	branch 'master' of https://github.com/go-sql-driver/mysql
+dfcba35e8da88b7b40a27aadc58ec7d991cc005f	not-for-merge	branch 'v1.0' of https://github.com/go-sql-driver/mysql
+9a7aa3606b82e2081a13a008ada88dfdb96c20fd	not-for-merge	branch 'v1.1' of https://github.com/go-sql-driver/mysql
+a732e14c62dde3285440047bba97581bc472ae18	not-for-merge	branch 'v1.2' of https://github.com/go-sql-driver/mysql
+72cd26f257d44c1114970e19afddcd812016007e	not-for-merge	branch 'v1.4' of https://github.com/go-sql-driver/mysql

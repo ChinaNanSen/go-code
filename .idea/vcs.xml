@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/day10 内含体脂率/BMS" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/micro/micro" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/gopkg.in/yaml.v2" vcs="Git" />
+  </component>
+</project>

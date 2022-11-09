@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="895b2c0e-da1b-45ba-a98a-1f36c81c4514" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/day10 内含体脂率/BMS/BMS.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day10 内含体脂率/BMS/bms.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day10 内含体脂率/BMS/dbConn.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day10 内含体脂率/BMS/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day10 内含体脂率/BMS/module.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/BTCPrice/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/aicoin/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/bian/dkb/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/bian/dkr/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/bian/userChicang/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/bitmex/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/bitmex/zero/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/huobi/huobiqs/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/okexBtcFire/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/okexBtcRati/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/okexbtcliang/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day17/redis/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day20/TEST/inter/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day20/ggrpc/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day24/coin/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day24/coin/txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day24/coin/txt.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day25/likou/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day26/filer/cc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day26/filer/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day26/filer/tt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day26/remove/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/day26/remove/remove_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gopkg.in/yaml.v2/decode_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/gopkg.in/yaml.v2/decode_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gopkg.in/yaml.v2/encode_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/gopkg.in/yaml.v2/encode_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gopkg.in/yaml.v2/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/src/gopkg.in/yaml.v2/go.mod" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Go Application" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="C:\Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/src" />
+  </component>
+  <component name="GoLibraries">
+    <option name="urls">
+      <list>
+        <option value="file://$PROJECT_DIR$" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1bzDKUHw7zrKQBKQcC8jLs7Eobe" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go Application" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.dep.integrator" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GoProject\src" />
+      <recent name="D:\GoProject\src\day26\remove" />
+      <recent name="D:\GoProject\src\day21" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.main.go">
+    <configuration name="go build day17/BTCPrice" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="GoProject" />
+      <working_directory value="$PROJECT_DIR$/src/day17/BTCPrice" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/src/day17/BTCPrice/main.go" />
+      <package value="day17/BTCPrice" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="GoProject" />
+      <working_directory value="$PROJECT_DIR$/src/day17/redis" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/src/day17/redis/main.go" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main.go" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.232.132/src/BTCPrice/main.go">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.main.go" />
+        <item itemvalue="Go Build.go build day17/BTCPrice" />
+        <item itemvalue="Go Build.go build main.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <proxy>goproxy.cn,direct</proxy>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="548" y="154" key="FileChooserDialogImpl" timestamp="1607616589163">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="548" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1607616589163" />
+  </component>
+</project>
